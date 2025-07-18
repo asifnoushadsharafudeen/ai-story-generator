@@ -6,8 +6,7 @@ This is a simple yet powerful \*\*AI Story Generator\*\* built using OpenAI's \*
 
 
 
-> ✅ Phase 1 of my GenAI Portfolio (Beinex AI Engineering Pathway)
-
+> ✅ Phase 1 of my GenAI Portfolio 
 
 
 ---
