@@ -30,6 +30,11 @@ A FastAPI app that exposes a `/generate` POST endpoint. You send a prompt via JS
 ### File
 - `main.py` – FastAPI application with POST endpoint.
 
+
+### ✅ Swagger UI Demo
+
+![Swagger UI Screenshot](images/swagger_ui.png)
+
 ---
 
 ## 🧠 Tech Stack
