@@ -1,24 +1,22 @@
-from transformers import pipeline
+from fastapi import FastAPI #Python backend framework which collects data from UI
+from pydantic import BaseModel #Pydantic verifies and parses the received input; We can avoid try/except logic using Pydantic
+from generator import generate_story #We are importing the generate_story function from the already written 'generator.py' code
 
-def generate_story(prompt):
+app = FastAPI() #Initialising FASTAPI app; app is an object of FASTAPI class which does all the communications
+
+#Defining the request body schema
+class PromptRequest(BaseModel): #Creating a local class which inherits all the charactors of 'BaseModel' class from pydantic library
+    prompt: str                 #Tells python that a 'prompt' variable with string type is passed; 
     
-    generator = pipeline("text-generation", model='gpt2') #distilgpt2 is a pre-trained language model; it causes grammatical errors
+#Define the POST endpoint
+@app.post("/generate") #A decorator which creates a route URL at /generate that listens for POST requests
+#We are posting the data obtained from /generate url to server
+def generate(req: PromptRequest):
+    story = generate_story(req.prompt) #Calls the GPT2 generator
+    return {"story": story} #Returns a JSON with the generated story
 
-    output = generator(prompt, max_length = 100, num_return_sequences = 1, temperature = 0.7, top_p = 0.9, repetition_penalty = 1.2)                                                       #Updated to 'gpt2' model for better english 
-
-    return output[0]['generated_text'] #generator returns a list of dictionaries. The first item in dictionary is returned/printed
 
 
 
 
-if __name__ == "__main__":
-    print("Welcome to AI Story Generator!\n ")
-    
-    user_prompt = input("Enter a story beginning: ")
-    
-    story = generate_story(user_prompt)
-    
-    print("\n Generated Story: \n")
-    
-    print(story)
 

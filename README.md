@@ -1,69 +1,45 @@
-\# 🤖 AI Story Generator (CLI-Based using GPT-2)
+# 🤖 AI Story Generator using GPT-2
 
-
-
-This is a simple yet powerful \*\*AI Story Generator\*\* built using OpenAI's \*\*GPT-2 model\*\* via Hugging Face Transformers. The program takes a user prompt and generates a short, creative story using a pretrained language model.
-
-
-
-> ✅ Phase 1 of my GenAI Portfolio 
-
+This project is part of my Generative AI Engineering Portfolio. It uses OpenAI’s **GPT-2** model via Hugging Face Transformers to generate short creative stories based on user-provided prompts. The project is structured in two phases:
 
 ---
 
+## ✅ Phase 1 – Auto Story Generator (Python Script)
 
+A basic script that generates a story given a prompt using GPT-2.
 
-\## 🚀 Features
+### Features
+- Automatically generates a story from a custom prompt.
+- Uses GPT-2 via Hugging Face Transformers.
+- Tuned for creativity and coherence (`temperature`, `top_p`, `repetition_penalty`).
 
-
-
-\- Generates a unique story based on your custom prompt
-
-\- Uses \*\*GPT-2\*\* for better grammar and coherence (vs. DistilGPT-2)
-
-\- CLI interface with simple user interaction
-
-\- Tuned generation parameters (`temperature`, `top\_p`, `repetition\_penalty`) to improve creativity and reduce redundancy
-
-
+### File
+- `generator.py` – contains the `generate_story()` function.
 
 ---
 
+## 🚀 Phase 2 – FastAPI Integration (API Serving)
 
+A FastAPI app that exposes a `/generate` POST endpoint. You send a prompt via JSON, and it returns a generated story.
 
-\## 🧠 Tech Stack
+### Features
+- Backend API using FastAPI.
+- Accepts JSON input (`prompt`) and returns story as JSON.
+- Swagger UI supported for easy testing.
 
-
-
-| Tool | Purpose |
-
-|------|---------|
-
-| Python | Core programming language |
-
-| Hugging Face Transformers | Text generation using GPT-2 |
-
-| GPT-2 model | Pretrained LLM for generating natural language |
-
-| CLI | Command-line interface for interaction |
-
-
+### File
+- `main.py` – FastAPI application with POST endpoint.
 
 ---
 
+## 🧠 Tech Stack
 
+| Tool / Library          | Purpose                                |
+|-------------------------|----------------------------------------|
+| Python                  | Programming language                   |
+| Hugging Face Transformers | GPT-2 text generation                |
+| FastAPI                 | Backend API server                     |
+| Uvicorn                 | ASGI server for running FastAPI apps   |
+| Pydantic                | Input data validation                  |
 
-\## 📦 How to Run
-
-
-
-\### 🔧 Install Dependencies
-
-
-
-```bash
-
-pip install transformers
-
-
-
+---
