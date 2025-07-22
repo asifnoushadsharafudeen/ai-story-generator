@@ -2,3 +2,4 @@ transformers==4.41.1
 torch           # Required backend for GPT-2 model
 fastapi==0.111.0
 uvicorn==0.29.0
+gradio 	# For setting up local UI

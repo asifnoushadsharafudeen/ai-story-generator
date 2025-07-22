@@ -36,6 +36,16 @@ A FastAPI app that exposes a `/generate` POST endpoint. You send a prompt via JS
 ![Swagger UI Screenshot](images/swagger_ui.png)
 
 ---
+## 🖼️ Phase 3: Gradio Interface (Local UI)
+
+This phase adds a simple yet intuitive Gradio-based interface for generating stories from your prompts.
+
+- Built with Gradio
+- Locally hosted in the browser
+- Great for testing UI-based GenAI apps
+
+### 🔍 Sample UI
+![Gradio UI](images/gradio_ui.png)
 
 ## 🧠 Tech Stack
 
