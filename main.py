@@ -1,22 +1,46 @@
-from fastapi import FastAPI #Python backend framework which collects data from UI
-from pydantic import BaseModel #Pydantic verifies and parses the received input; We can avoid try/except logic using Pydantic
-from generator import generate_story #We are importing the generate_story function from the already written 'generator.py' code
+# ----------------------------
+# 🚀 PHASE 2: FastAPI backend
+# ----------------------------
 
-app = FastAPI() #Initialising FASTAPI app; app is an object of FASTAPI class which does all the communications
+# from fastapi import FastAPI
+# from pydantic import BaseModel
+# from generator import generate_story
 
-#Defining the request body schema
-class PromptRequest(BaseModel): #Creating a local class which inherits all the charactors of 'BaseModel' class from pydantic library
-    prompt: str                 #Tells python that a 'prompt' variable with string type is passed; 
-    
-#Define the POST endpoint
-@app.post("/generate") #A decorator which creates a route URL at /generate that listens for POST requests
-#We are posting the data obtained from /generate url to server
-def generate(req: PromptRequest):
-    story = generate_story(req.prompt) #Calls the GPT2 generator
-    return {"story": story} #Returns a JSON with the generated story
+# app = FastAPI()
+
+# class PromptRequest(BaseModel):
+#     prompt: str
+
+# @app.post("/generate")
+# def generate(req: PromptRequest):
+#     story = generate_story(req.prompt)
+#     return {"story": story}
 
 
+# ----------------------------
+# 🎨 PHASE 3: Gradio Interface
+# ----------------------------
 
+import gradio as gr
+from generator import generate_story
+
+def story_interface(prompt, context=""):
+    final_prompt = context if context.strip() else prompt
+    story = generate_story(final_prompt)
+    return story
+
+iface = gr.Interface(
+    fn=story_interface,
+    inputs=[
+        gr.Textbox(label="Main Prompt"),
+        gr.Textbox(label="Context (optional)")
+    ],
+    outputs="text",
+    title="🐼 AI Story Generator",
+    description="Generate short stories based on your input and optional context."
+)
+
+iface.launch()
 
 
 

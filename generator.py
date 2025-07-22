@@ -1,28 +1,50 @@
 from transformers import pipeline
-generator = pipeline("text-generation", model='gpt2')  #Globally defined
 
-def generate_story(prompt: str) ->str: 
-     #distilgpt2 is a pre-trained language model; it causes grammatical errors
+# Load GPT-2 model
+generator = pipeline("text-generation", model='gpt2')
 
-    output = generator(prompt, max_length = 100, num_return_sequences = 1, temperature = 0.7, top_p = 0.9, repetition_penalty = 1.2)                                                       #Updated to 'gpt2' model for better english 
+# ===================== PHASE 2: FastAPI Version (Commented Out) =====================
+# def generate_story(prompt: str) -> str:
+#     input_text = f"Once upon a time, {prompt}"
+#     inputs = tokenizer.encode(input_text, return_tensors="pt")
+#     outputs = model.generate(
+#         inputs,
+#         max_length=150,
+#         do_sample=True,
+#         temperature=0.9,
+#         top_p=0.95,
+#         repetition_penalty=1.2
+#     )
+#     story = tokenizer.decode(outputs[0], skip_special_tokens=True)
+#     return story
 
-    return output[0]['generated_text'] #generator returns a list of dictionaries. The first item in dictionary is returned/printed
-
-
-#Command Line Interface Model - Tested in Spyder IDE
-
-if __name__ == "__main__":
-    print("Welcome to AI Story Generator!\n ")
-    
-    user_prompt = input("Enter a story beginning: ")
-    
-    if not user_prompt.strip():
-        print("Story cannot be empty. Please try again.")
-        
+# ===================== PHASE 3: Gradio Version with Context =========================
+def generate_story(prompt, context=None):
+    if context and context.strip():
+        final_prompt = f"{context.strip()} {prompt.strip()}"
     else:
-        story = generate_story(user_prompt)
+        final_prompt = prompt.strip()
     
-        print("\n Generated Story: \n")
+    # Generate story using GPT-2
+    result = generator(
+        final_prompt,
+        max_length=150,
+        do_sample=True,
+        temperature=0.9,
+        top_p=0.95,
+        repetition_penalty=1.2
+    )
     
-        print(story)
+    return result[0]["generated_text"]
 
+# ===================== OPTIONAL: CLI Testing Mode (Comment out in Gradio app) =======
+# if __name__ == "__main__":
+#     print("Welcome to AI Story Generator!\n")
+#     user_prompt = input("Enter a story beginning: ")
+#     context_input = input("Optional context (press enter to skip): ")
+#     if not user_prompt.strip():
+#         print("Story cannot be empty. Please try again.")
+#     else:
+#         story = generate_story(user_prompt, context_input)
+#         print("\nGenerated Story:\n")
+#         print(story)
