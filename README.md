@@ -61,7 +61,7 @@ A local browser-based UI for interactive story generation.
 
 ### 📸 Gradio UI Screenshot
 
-![Gradio UI](images/Updated Model_Context.png)
+![Gradio UI](images/context_ui.png)
 
 ---
 
