@@ -1,5 +1,5 @@
-transformers==4.41.1
-torch           # Required backend for GPT-2 model
-fastapi==0.111.0
-uvicorn==0.29.0
-gradio 	# For setting up local UI
+transformers==4.41.1   # Hugging Face Transformers for GPT-2
+torch                  # PyTorch - backend for Transformers
+fastapi==0.111.0       # FastAPI for serving the API
+uvicorn==0.29.0        # ASGI server to run FastAPI
+gradio                 # Gradio for interactive UI
