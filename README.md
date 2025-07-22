@@ -1,3 +1,4 @@
+![Cover Image](images/cover.png)
 # 🤖 AI Story Generator using GPT-2
 
 This project is part of my **Generative AI Engineering Portfolio**. It uses **GPT-2** via Hugging Face Transformers to generate short creative stories based on user-provided prompts.
@@ -60,7 +61,7 @@ A local browser-based UI for interactive story generation.
 
 ### 📸 Gradio UI Screenshot
 
-![Gradio UI](images/gradio_ui.png)
+![Gradio UI](images/Updated Model_Context.png)
 
 ---
 
@@ -77,9 +78,9 @@ A local browser-based UI for interactive story generation.
 
 ---
 
-## 🏃‍♂️ How to Run
+### ⚙️ Getting Started
 
-### 1. Clone the repo
-```bash
 git clone https://github.com/asifnoushadsharafudeen/ai-story-generator.git
 cd ai-story-generator
+pip install -r requirements.txt
+python gradio_ui.py  # or python main.py for API version
